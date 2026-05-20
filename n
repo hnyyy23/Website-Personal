@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengumuman Staff Partner 11th Physics Summit</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #10172a, #1e3a8a, #38bdf8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      color: #0f172a;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 28px;
+      padding: 36px;
+      box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      line-height: 1.15;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: #475569;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .input-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 16px;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 14px;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 15px 18px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .result {
+      display: none;
+      margin-top: 22px;
+      text-align: left;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .result-card {
+      border-radius: 24px;
+      padding: 26px;
+      border: 1px solid #bfdbfe;
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+    }
+
+    .success-title {
+      font-size: 28px;
+      color: #166534;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .message {
+      font-size: 17px;
+      line-height: 1.7;
+      text-align: center;
+      color: #334155;
+      margin-bottom: 22px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .info-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .info-box span {
+      display: block;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .info-box strong {
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .map-link {
+      display: inline-block;
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      background: #0f172a;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 800;
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #475569;
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .error {
+      display: none;
+      margin-top: 18px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      padding: 15px;
+      border-radius: 16px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 22px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 26px 20px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="badge">11th Physics Summit</div>
+    <h1>Pengumuman Staff Partner</h1>
+    <p class="subtitle">
+      Masukkan NRP kamu untuk melihat hasil seleksi berkas Staff Partner 11th Physics Summit.
+    </p>
+
+    <section class="input-card">
+      <label for="nrp">NRP</label>
+      <input id="nrp" type="text" placeholder="Contoh: 5024XXXXXX" autocomplete="off" />
+      <button id="cekButton" onclick="cekPengumuman()">Cek Hasil Seleksi</button>
+      <p id="loadStatus" style="margin-top:12px;color:#64748b;font-size:14px;line-height:1.5;">Sedang memuat data peserta...</p>
+    </section>
+
+    <section id="result" class="result">
+      <div class="result-card">
+        <h2 class="success-title">Selamat!</h2>
+        <p class="message">
+          Anda dinyatakan <strong>lolos seleksi berkas Staff Partner 11th Physics Summit</strong>
+          dan berhak melanjutkan ke tahap seleksi berikutnya.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <span>Nama</span>
+            <strong id="namaPeserta">-</strong>
+          </div>
+          <div class="info-box">
+            <span>NRP</span>
+            <strong id="nrpPeserta">-</strong>
+          </div>
+          <div class="info-box">
+            <span>Pos Seleksi</span>
+            <strong id="posPeserta">-</strong>
+          </div>
+          <div class="info-box">
+            <span>Waktu</span>
+            <strong id="waktuPeserta">-</strong>
+          </div>
+          <div class="info-box">
+            <span>Hari/Tanggal</span>
+            <strong id="tanggalPeserta">-</strong>
+          </div>
+          <div class="info-box">
+            <span>Contact Person</span>
+            <strong id="cpPeserta">-</strong>
+          </div>
+        </div>
+
+        <a id="denahLink" class="map-link" href="#" target="_blank" rel="noopener">
+          Lihat Denah Pos Seleksi
+        </a>
+
+        <p class="note">
+          Apabila berhalangan hadir pada seleksi lanjutan, peserta wajib menghubungi contact person yang tertera paling lambat tanggal 22 pukul 21.00 WIB.
+        </p>
+      </div>
+    </section>
+
+    <div id="error" class="error">
+      NRP tidak ditemukan. Pastikan NRP yang dimasukkan sudah benar atau hubungi panitia.
+    </div>
+
+    <footer>
+      Physics Summit &copy; 2026
+    </footer>
+  </main>
+
+  <script>
+    // EDIT LINK CSV GOOGLE SHEETS DI SINI
+    // Cara dapat link:
+    // Google Sheets > File > Share > Publish to web > pilih CSV > Publish > copy link-nya.
+    const CSV_URL = "data.csv";
+
+    // Link denah default untuk semua peserta.
+    const DENAH_DEFAULT = "https://intip.in/petunjukpos";
+
+    let dataPeserta = {};
+
+    function parseCSV(text) {
+      const rows = [];
+      let current = "";
+      let row = [];
+      let insideQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+
+        if (char === '"' && insideQuotes && nextChar === '"') {
+          current += '"';
+          i++;
+        } else if (char === '"') {
+          insideQuotes = !insideQuotes;
+        } else if (char === ',' && !insideQuotes) {
+          row.push(current.trim());
+          current = "";
+        } else if ((char === '
+' || char === '
+') && !insideQuotes) {
+          if (current || row.length) {
+            row.push(current.trim());
+            rows.push(row);
+            row = [];
+            current = "";
+          }
+          if (char === '
+' && nextChar === '
+') i++;
+        } else {
+          current += char;
+        }
+      }
+
+      if (current || row.length) {
+        row.push(current.trim());
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    function normalisasiHeader(header) {
+      return header.trim().toLowerCase();
+    }
+
+    function bersihkanNRP(value) {
+      return String(value || "").trim().replace(/\.0$/, "");
+    }
+
+    async function loadDataPeserta() {
+      const status = document.getElementById("loadStatus");
+      const button = document.getElementById("cekButton");
+      button.disabled = true;
+      button.textContent = "Memuat Data...";
+
+      try {
+        const response = await fetch(CSV_URL);
+
+        if (!response.ok) {
+          throw new Error("Spreadsheet tidak bisa diakses. Pastikan aksesnya Anyone with the link - Viewer.");
+        }
+
+        const csvText = await response.text();
+
+        if (csvText.toLowerCase().includes("<!doctype html") || csvText.toLowerCase().includes("<html")) {
+          throw new Error("Link spreadsheet belum berupa CSV publik. Gunakan Publish to web sebagai CSV.");
+        }
+
+        const rows = parseCSV(csvText).filter(row => row.some(cell => cell.trim() !== ""));
+
+        if (rows.length < 2) {
+          throw new Error("Data spreadsheet masih kosong atau header belum terbaca.");
+        }
+
+        const headers = rows[0].map(normalisasiHeader);
+
+        rows.slice(1).forEach((row) => {
+          const item = {};
+          headers.forEach((header, index) => {
+            item[header] = row[index] || "";
+          });
+
+          const nrp = bersihkanNRP(item.nrp);
+          if (nrp) {
+            dataPeserta[nrp] = {
+              nama: item.nama || "-",
+              pos: item.pos || "-",
+              hariTanggal: item.jadwal || "-",
+              pukul: item.jam || "-",
+              denah: item.denah || DENAH_DEFAULT,
+              cp: item.cp || "Silakan hubungi panitia."
+            };
+          }
+        });
+
+        const jumlahData = Object.keys(dataPeserta).length;
+
+        if (jumlahData === 0) {
+          throw new Error("Kolom NRP belum terbaca. Pastikan header kolom bernama NRP.");
+        }
+
+        status.textContent = `Data berhasil dimuat. Total ${jumlahData} peserta terdaftar.`;
+        status.style.color = "#166534";
+        button.disabled = false;
+        button.textContent = "Cek Hasil Seleksi";
+      } catch (error) {
+        console.error(error);
+        status.textContent = error.message;
+        status.style.color = "#991b1b";
+        button.disabled = false;
+        button.textContent = "Cek Hasil Seleksi";
+      }
+    }
+
+    function cekPengumuman() {
+      const input = bersihkanNRP(document.getElementById("nrp").value);
+      const peserta = dataPeserta[input];
+      const result = document.getElementById("result");
+      const error = document.getElementById("error");
+
+      if (!input) {
+        result.style.display = "none";
+        error.style.display = "block";
+        error.textContent = "Masukkan NRP terlebih dahulu.";
+        return;
+      }
+
+      if (!peserta) {
+        result.style.display = "none";
+        error.style.display = "block";
+        error.textContent = "NRP tidak ditemukan. Pastikan NRP yang dimasukkan sudah benar atau hubungi panitia.";
+        return;
+      }
+
+      document.getElementById("namaPeserta").textContent = peserta.nama;
+      document.getElementById("nrpPeserta").textContent = input;
+      document.getElementById("posPeserta").textContent = peserta.pos;
+      document.getElementById("waktuPeserta").textContent = String(peserta.pukul).includes("WIB") ? peserta.pukul : peserta.pukul + " WIB";
+      document.getElementById("tanggalPeserta").textContent = peserta.hariTanggal;
+      document.getElementById("cpPeserta").textContent = peserta.cp;
+      document.getElementById("denahLink").href = peserta.denah;
+
+      error.style.display = "none";
+      result.style.display = "block";
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    loadDataPeserta();
+
+    document.getElementById("nrp").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        cekPengumuman();
+      }
+    });
+  </script>
+</body>
+</html>
