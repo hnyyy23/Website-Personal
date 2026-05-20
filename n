@@ -293,15 +293,13 @@
   </main>
 
   <script>
-    // EDIT LINK CSV GOOGLE SHEETS DI SINI
-    // Cara dapat link:
-    // Google Sheets > File > Share > Publish to web > pilih CSV > Publish > copy link-nya.
-    const CSV_URL = "data.csv";
-
-    // Link denah default untuk semua peserta.
+    // AMBIL DATA PESERTA DARI RAW GITHUB CSV
+    // Jangan pakai link github.com/.../blob/main/...
+    // Pakai link raw.githubusercontent.com seperti di bawah ini.
+    const CSV_URL = "https://raw.githubusercontent.com/hnyyy23/Website-Personal/main/berkas%20-%20Plot%20Pengumuman.csv";
     const DENAH_DEFAULT = "https://intip.in/petunjukpos";
 
-    let dataPeserta = {};
+    const dataPeserta = {};
 
     function parseCSV(text) {
       const rows = [];
@@ -321,18 +319,14 @@
         } else if (char === ',' && !insideQuotes) {
           row.push(current.trim());
           current = "";
-        } else if ((char === '
-' || char === '
-') && !insideQuotes) {
+        } else if ((char === '\n' || char === '\r') && !insideQuotes) {
           if (current || row.length) {
             row.push(current.trim());
             rows.push(row);
             row = [];
             current = "";
           }
-          if (char === '
-' && nextChar === '
-') i++;
+          if (char === '\r' && nextChar === '\n') i++;
         } else {
           current += char;
         }
@@ -347,7 +341,7 @@
     }
 
     function normalisasiHeader(header) {
-      return header.trim().toLowerCase();
+      return String(header || "").trim().toLowerCase();
     }
 
     function bersihkanNRP(value) {
@@ -357,26 +351,29 @@
     async function loadDataPeserta() {
       const status = document.getElementById("loadStatus");
       const button = document.getElementById("cekButton");
+
       button.disabled = true;
       button.textContent = "Memuat Data...";
+      status.textContent = "Sedang memuat data peserta...";
+      status.style.color = "#64748b";
 
       try {
-        const response = await fetch(CSV_URL);
+        const response = await fetch(CSV_URL, { cache: "no-store" });
 
         if (!response.ok) {
-          throw new Error("Spreadsheet tidak bisa diakses. Pastikan aksesnya Anyone with the link - Viewer.");
+          throw new Error("CSV tidak bisa dibuka. Pastikan repository CSV public dan link raw benar.");
         }
 
         const csvText = await response.text();
 
         if (csvText.toLowerCase().includes("<!doctype html") || csvText.toLowerCase().includes("<html")) {
-          throw new Error("Link spreadsheet belum berupa CSV publik. Gunakan Publish to web sebagai CSV.");
+          throw new Error("Yang terbaca masih halaman GitHub, bukan raw CSV.");
         }
 
-        const rows = parseCSV(csvText).filter(row => row.some(cell => cell.trim() !== ""));
+        const rows = parseCSV(csvText).filter(row => row.some(cell => String(cell).trim() !== ""));
 
         if (rows.length < 2) {
-          throw new Error("Data spreadsheet masih kosong atau header belum terbaca.");
+          throw new Error("CSV kosong atau header tidak terbaca.");
         }
 
         const headers = rows[0].map(normalisasiHeader);
@@ -392,10 +389,10 @@
             dataPeserta[nrp] = {
               nama: item.nama || "-",
               pos: item.pos || "-",
-              hariTanggal: item.jadwal || "-",
               pukul: item.jam || "-",
-              denah: item.denah || DENAH_DEFAULT,
-              cp: item.cp || "Silakan hubungi panitia."
+              hariTanggal: item.jadwal || "-",
+              cp: item.cp || "Silakan hubungi panitia.",
+              denah: item.denah || DENAH_DEFAULT
             };
           }
         });
@@ -403,17 +400,16 @@
         const jumlahData = Object.keys(dataPeserta).length;
 
         if (jumlahData === 0) {
-          throw new Error("Kolom NRP belum terbaca. Pastikan header kolom bernama NRP.");
+          throw new Error("Kolom NRP tidak terbaca. Pastikan header bernama NRP.");
         }
 
         status.textContent = `Data berhasil dimuat. Total ${jumlahData} peserta terdaftar.`;
         status.style.color = "#166534";
-        button.disabled = false;
-        button.textContent = "Cek Hasil Seleksi";
       } catch (error) {
         console.error(error);
         status.textContent = error.message;
         status.style.color = "#991b1b";
+      } finally {
         button.disabled = false;
         button.textContent = "Cek Hasil Seleksi";
       }
